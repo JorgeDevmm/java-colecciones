@@ -47,7 +47,7 @@ public class Util {
 
         for (int i = 0; i < arraysRadios.length; i++) {
             double conversionDecimal = Math.pow(10, 2);
-            arraysPerimetro[i] = Math.round((2 * PI * arraysRadios[i]) * conversionDecimal )/ conversionDecimal;
+            arraysPerimetro[i] = Math.round((2 * PI * arraysRadios[i]) * conversionDecimal) / conversionDecimal;
         }
 
         return arraysPerimetro;
@@ -70,8 +70,20 @@ public class Util {
 
     public static void imprimirInformacion(int[] array, int[] nuevoArray) {
 
-        System.out.printf("Array original %s%n", Arrays.toString(array));
-        System.out.printf("Array nuevo %s%n", Arrays.toString(nuevoArray));
+        System.out.printf("Valores del array original %s%n", Arrays.toString(array));//array orginal
+        System.out.printf("Valores del array nuevo %s%n", Arrays.toString(nuevoArray));//array nuevo
+    }
+
+    public static void imprimirInformacion(int[] array, int[] nuevoArray, String mensaje1, String mensaje2) {
+
+        System.out.printf(mensaje1, Arrays.toString(array));//array orginal
+        System.out.printf(mensaje2, Arrays.toString(nuevoArray));//array nuevo
+    }
+
+    public static void imprimirInformacion(double[] array, double[] nuevoArray, String mensaje1, String mensaje2) {
+
+        System.out.printf(mensaje1, Arrays.toString(array));//array orginal
+        System.out.printf(mensaje2, Arrays.toString(nuevoArray));//array nuevo
     }
 
     public static void imprimirInformacion(int[] array1, int[] array2, int[] sumaArray) {

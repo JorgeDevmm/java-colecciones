@@ -1,49 +1,95 @@
 package dev.jorge.arrays.ejercicios.metodosutilitarios;
 
+import javax.management.StandardMBean;
 import java.util.Random;
 
 public class RandomUtilities {
 
-    public static int[] generarRandomArrayInt(int tamanioArreglo, int max, int min, Random random) {
+    /*Almacenar y devolver un numero array con valor int alearorio y unicos*/
+    public static int[] generarRandomArrayInt(int tamanioArreglo, int min, int max, Random random) {
         int[] array = new int[tamanioArreglo];
+        int i = 0;
 
-        array[0]=0;
-        for (int i = 0; i < tamanioArreglo; i++) {
-            /*array[i] = generarAleatorioInt(max, min, random);*/
-            int aleatorio = generarAleatorioInt(max, min, random);
-            if(aleatorio!=array[i]){
+        if (max - min + 1 < tamanioArreglo) {
+            throw new IllegalArgumentException("El rango es demasiado pequeño para generar valores únicos");
+        }
+
+        while (i < tamanioArreglo) {
+            int aleatorio = generarAleatorioInt(min, max, random);
+
+            if (!existeNumero(array, i, aleatorio)) {
                 array[i] = aleatorio;
+                i++;
             }
-        }
 
+        }
         return array;
     }
 
-    public static double[] generarRandomArrayDouble(int tamanioArreglo, double max, double min, Random random) {
+    /**
+     * Almacenar y devolver un numero array con valor double
+     */
+    public static double[] generarRandomArrayDouble(int tamanioArreglo, double min, double max, Random random) {
         double[] array = new double[tamanioArreglo];
+        int i = 0;
 
-        for (int i = 0; i < tamanioArreglo; i++) {
-            array[i] = generarAleatorioDouble(max, min, random);
+        if (max - min + 1 < tamanioArreglo) {
+            throw new IllegalArgumentException("El rango es demasiado pequeño para generar valores únicos");
         }
 
+        while (i < tamanioArreglo) {
+            double aleatorio = generarAleatorioDouble(min, max, random);
+
+            if (!existeNumeroDouble(array, i, aleatorio)) {
+                array[i] = aleatorio;
+                i++;
+            }
+
+        }
         return array;
     }
 
+    /*validación aplicando busqueda secuencial para arrya primitivo si elemento existe en un array */
+    public static boolean existeNumero(int[] array, int hastaIndice, int valor) {
+        for (int i = 0; i < hastaIndice; i++) {
+            if (array[i] == valor) {
+                return true;
+            }
 
-    public static int generarAleatorioInt(int max, int min, Random random) {
+        }
+        return false;
+    }
+
+    public static boolean existeNumeroDouble(double[] array, int hastaIndice, double valor) {
+        for (int i = 0; i < hastaIndice; i++) {
+            if (array[i] == valor) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+    /*Generar un número aleatorio de tipo int*/
+    public static int generarAleatorioInt(int min, int max, Random random) {
+
         if (min > max) {
             throw new IllegalArgumentException("el valor máximo deber ser mayor o igual al minimo");
         }
+
         return random.nextInt(max - min + 1) + min;
     }
 
-    public static double generarAleatorioDouble(double max, double min, Random random) {
+
+    /*Generar un número aleatorio de tipo double*/
+    public static double generarAleatorioDouble(double min, double max, Random random) {
         if (min > max) {
             throw new IllegalArgumentException("el valor máximo deber ser mayor o igual al minimo");
         }
 
         double conversionDecimal = Math.pow(10, 2);
-        double numeroAleatorio =random.nextDouble(max - min + 1) + min;
+        double numeroAleatorio = random.nextDouble(max - min + 1) + min;
         return Math.round(numeroAleatorio * conversionDecimal) / conversionDecimal;
     }
 

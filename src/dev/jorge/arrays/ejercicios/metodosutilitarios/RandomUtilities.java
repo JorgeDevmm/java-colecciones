@@ -70,7 +70,6 @@ public class RandomUtilities {
         return false;
     }
 
-
     /*Generar un número aleatorio de tipo int*/
     public static int generarAleatorioInt(int min, int max, Random random) {
 
@@ -80,6 +79,7 @@ public class RandomUtilities {
 
         return random.nextInt(max - min + 1) + min;
     }
+
 
 
     /*Generar un número aleatorio de tipo double*/
